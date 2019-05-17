@@ -1,0 +1,1 @@
+export const users_url = 'users';
