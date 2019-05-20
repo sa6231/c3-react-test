@@ -24,7 +24,13 @@ describe("PearsonUsers", () => {
     expect(component.find('.users-list').children().length).toEqual(3);
   });
 
-  
+  it('Task 2 : Should fetch a list of users', () => {
+    const fetchSpy = jest.spyOn(window, 'fetch');
+    const component = shallow(
+      <PearsonUsers />
+    );
+    expect(fetchSpy).toBeCalled();
+  });
 
   it("Task 3 : Remove duplicated users from the state", () => {
     const users = component.state().users;
