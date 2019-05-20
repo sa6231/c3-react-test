@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 
 import PearsonUsers from "./PearsonUsers";
-import {PearsonUser} from '../../Container/PearsonUser/PearsonUser'
+import {PearsonUser} from '../../Component/PearsonUser/PearsonUser'
 import { XMLHttpRequest } from 'xmlhttprequest';
 global.XMLHttpRequest = XMLHttpRequest;
 
@@ -24,6 +24,8 @@ describe("PearsonUsers", () => {
     expect(component.find('.users-list').children().length).toEqual(3);
   });
 
+  
+
   it("Task 3 : Remove duplicated users from the state", () => {
     const users = component.state().users;
     users.push(mockApiUsers.find(x=>x.id===4));
@@ -32,14 +34,16 @@ describe("PearsonUsers", () => {
   });
 
   it("Task 4 : Delete a user from the state", () => {
-    const userCount = component.find('.users-list').children().length;
-    component.instance().deleteUser(4);
-    expect(component.find('.users-list').children().length).toEqual(userCount-1);
+    const component = shallow(<PearsonUsers />);
+    component.setState({ users: mockApiUsers })
+    component.instance().deleteUser(4)
+    expect(component.state('users')).toEqual(mockApiUsers.filter(x => x.id != 4))
   });
 
   it("Task 5 : New component to render each user profile", () => {
     component.setState({users:mockApiUsers});
-    expect(component.find(PearsonUser).length).toEqual(10);
+    expect(component.find(PearsonUser).length).toEqual(9);
   });
+
   
 });

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import './PearsonUsers.css'
 import {getFetchData} from '../../API/Api'
-import {PearsonUser} from '../../Container/PearsonUser/PearsonUser'
+import {PearsonUser} from '../../Component/PearsonUser/PearsonUser'
 import {users_url} from '../../API/ApiUrls'
 
 export default class PearsonUsers extends Component {
